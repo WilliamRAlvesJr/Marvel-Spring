@@ -3,8 +3,6 @@ package com.william.marvelspring.domain.model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
-import java.util.Set;
 
 @Data
 @Builder
@@ -12,8 +10,8 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "characters", schema = "marvel")
-public class Character {
+@Table(name = "series", schema = "marvel")
+public class Serie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,15 +24,8 @@ public class Character {
     @Column(name = "description", nullable = false)
     private String description;
 
-    @OneToMany(mappedBy = "character")
-    private List<Comic> comics;
+    @ManyToOne()
+    @JoinColumn(name = "character_id", nullable = false)
+    private Character character;
 
-    @OneToMany(mappedBy = "character")
-    private List<Event> events;
-
-    @OneToMany(mappedBy = "character")
-    private List<Serie> series;
-
-    @OneToMany(mappedBy = "character")
-    private List<Storie> stories;
 }
